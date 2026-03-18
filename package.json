@@ -16,10 +16,10 @@
   "description": "A Vue 3 drag-and-drop component library.",
   "scripts": {
     "start": "npm run storybook -- --ci --port 6007",
-    "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:storybook",
+    "build-storybook": "npm run build:storybook",
     "storybook": "storybook dev -p 6007 --ci",
-    "build:storybook": "storybook build --ci",
+    "build:storybook": "storybook build --output-dir dist",
     "lint": "eslint . --ext .ts,.tsx,.vue",
     "preview": "vite preview"
   },
@@ -41,6 +41,7 @@
     "@storybook/vue3-vite": "^10.2.19",
     "@vitejs/plugin-vue": "^6.0.5",
     "@vue/compiler-sfc": "^3.4.0",
+    "chromatic": "^15.3.0",
     "eslint": "^8.0.0",
     "eslint-plugin-storybook": "10.2.19",
     "eslint-plugin-vue": "^9.0.0",
