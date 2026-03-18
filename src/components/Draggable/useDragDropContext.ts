@@ -1,4 +1,4 @@
-import { inject, onBeforeUnmount, provide, reactive, ref, type InjectionKey, type Ref } from 'vue';
+import { inject, onBeforeUnmount, provide, reactive, ref, shallowRef, type InjectionKey, type Ref } from 'vue';
 import type {
   DragDropBoundary,
   DragDropDropEvent,
@@ -44,6 +44,8 @@ interface DragEndResult<TItem> {
 
 interface InternalDragDropContext {
   dragState: ActiveDrag;
+  rawClientX: Ref<number>;
+  rawClientY: Ref<number>;
   registerTarget: (target: InternalDropTargetRegistration) => () => void;
   startDrag: <TItem>(payload: DragStartPayload<TItem>) => void;
   endDrag: <TItem>() => DragEndResult<TItem> | null;
@@ -71,6 +73,16 @@ export function provideDragDropContext() {
   });
   const activeBoundary = ref<DragDropBoundary | null>(null);
   const dropLayer = createInternalDropLayer();
+
+  // Raw (non-reactive) coordinates updated every pointermove for preview position.
+  // Only the preview overlay reads these via shallowRef to avoid triggering the
+  // full reactive cascade on every pixel move.
+  const rawClientX = shallowRef(0);
+  const rawClientY = shallowRef(0);
+  let _rafId: number | null = null;
+  let _pendingX = 0;
+  let _pendingY = 0;
+  let _hoverDirty = false;
 
   function reset() {
     dragState.active = false;
@@ -102,27 +114,76 @@ export function provideDragDropContext() {
     );
   }
 
-  function onPointerMove(event: PointerEvent) {
+  function processFrame() {
+    _rafId = null;
     if (!dragState.active) return;
-    dragState.clientX = event.clientX;
-    dragState.clientY = event.clientY;
 
-    if (!withinBoundary(event.clientX, event.clientY)) {
-      dragState.hoverTarget = null;
+    const cx = _pendingX;
+    const cy = _pendingY;
+
+    // Always update preview position (cheap shallowRef trigger)
+    rawClientX.value = cx;
+    rawClientY.value = cy;
+
+    // Only run expensive hover detection when coordinates actually changed
+    if (!_hoverDirty) return;
+    _hoverDirty = false;
+
+    // Update reactive coords (used by endDrag for final position)
+    dragState.clientX = cx;
+    dragState.clientY = cy;
+
+    if (!withinBoundary(cx, cy)) {
+      if (dragState.hoverTarget !== null) dragState.hoverTarget = null;
       return;
     }
     if (!dragState.item || !dragState.source) {
-      dragState.hoverTarget = null;
+      if (dragState.hoverTarget !== null) dragState.hoverTarget = null;
       return;
     }
-    dragState.hoverTarget = dropLayer.detectHoverTarget(event.clientX, event.clientY, {
+
+    const newTarget = dropLayer.detectHoverTarget(cx, cy, {
       item: dragState.item,
       source: dragState.source,
     });
+
+    // Only trigger reactive update if hover target actually changed
+    const prev = dragState.hoverTarget;
+    if (
+      newTarget?.id !== prev?.id ||
+      newTarget?.index !== prev?.index ||
+      newTarget?.accepts !== prev?.accepts
+    ) {
+      dragState.hoverTarget = newTarget;
+    }
+  }
+
+  function onPointerMove(event: PointerEvent) {
+    if (!dragState.active) return;
+
+    const cx = event.clientX;
+    const cy = event.clientY;
+
+    // Mark dirty if coordinates changed enough to warrant hover re-evaluation
+    if (cx !== _pendingX || cy !== _pendingY) {
+      _hoverDirty = true;
+    }
+    _pendingX = cx;
+    _pendingY = cy;
+
+    // Coalesce into a single RAF — preview moves at display refresh rate,
+    // hover detection runs at most once per frame instead of per pointermove.
+    if (_rafId === null) {
+      _rafId = requestAnimationFrame(processFrame);
+    }
   }
 
   function teardownListeners() {
     document.removeEventListener('pointermove', onPointerMove);
+    if (_rafId !== null) {
+      cancelAnimationFrame(_rafId);
+      _rafId = null;
+    }
   }
 
   function startDrag<TItem>(payload: DragStartPayload<TItem>) {
@@ -139,6 +200,10 @@ export function provideDragDropContext() {
     dragState.previewHeight = payload.previewHeight;
     dragState.hoverTarget = null;
     activeBoundary.value = payload.boundary;
+    _pendingX = payload.clientX;
+    _pendingY = payload.clientY;
+    rawClientX.value = payload.clientX;
+    rawClientY.value = payload.clientY;
     document.addEventListener('pointermove', onPointerMove);
   }
 
@@ -196,6 +261,8 @@ export function provideDragDropContext() {
 
   provide(DRAG_DROP_CONTEXT_KEY, {
     dragState,
+    rawClientX,
+    rawClientY,
     registerTarget,
     startDrag,
     endDrag,
