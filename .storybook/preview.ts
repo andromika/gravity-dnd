@@ -1,4 +1,5 @@
 import '../src/styles.css';
+import './preview.css';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -7,5 +8,8 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/
     }
+  },
+  docs: {
+    autodocs: 'tag'
   }
 };
