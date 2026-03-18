@@ -93,17 +93,37 @@ function resolveItemKey(item: unknown, index: number) {
 function resolvePoolIndex(clientX: number, clientY: number) {
   const root = rootEl.value;
   if (!root) return props.items.length;
-  const nodes = Array.from(root.querySelectorAll<HTMLElement>('[data-pool-index]'));
-  for (const node of nodes) {
-    const rect = node.getBoundingClientRect();
-    const idx = Number(node.dataset.poolIndex ?? -1);
-    const safeIndex = Number.isFinite(idx) && idx >= 0 ? idx : props.items.length;
 
-    if (clientY < rect.top) return safeIndex;
-    if (clientY > rect.bottom) continue;
-    if (clientX <= rect.left + rect.width / 2) return safeIndex;
+
+  if (_rectCacheDirty || _rectCache.length !== props.items.length) {
+    _rebuildRectCache(root);
+  }
+
+  for (let i = 0; i < _rectCache.length; i++) {
+    const r = _rectCache[i];
+    if (clientY < r.top) return i;
+    if (clientY > r.bottom) continue;
+    if (clientX <= r.left + r.hw) return i;
   }
   return props.items.length;
+}
+
+interface _CachedRect { top: number; bottom: number; left: number; hw: number; }
+let _rectCache: _CachedRect[] = [];
+let _rectCacheDirty = true;
+
+function _rebuildRectCache(root: HTMLElement) {
+  const nodes = root.querySelectorAll<HTMLElement>('[data-pool-index]');
+  _rectCache = [];
+  for (let i = 0; i < nodes.length; i++) {
+    const rect = nodes[i].getBoundingClientRect();
+    _rectCache.push({ top: rect.top, bottom: rect.bottom, left: rect.left, hw: rect.width / 2 });
+  }
+  _rectCacheDirty = false;
+}
+
+function _invalidateRectCache() {
+  _rectCacheDirty = true;
 }
 
 function canAccept(item: unknown, sourceContainerId: string, sourceIndex: number) {
@@ -152,7 +172,10 @@ function registerTarget() {
 
 watch(
   () => [props.poolId, props.disabled, props.items.length],
-  () => registerTarget(),
+  () => {
+    _invalidateRectCache();
+    registerTarget();
+  },
   { immediate: true }
 );
 
@@ -170,5 +193,6 @@ watch(
 
 onBeforeUnmount(() => {
   if (unregister) unregister();
+  _rectCache = [];
 });
 </script>
