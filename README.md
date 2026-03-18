@@ -1,5 +1,8 @@
 # Gravity - Stardust UI's drag-n-drop component.
 
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/gravity-dnd) ![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fandromika%2Fgravity-dnd%2Frefs%2Fheads%2Fmain%2Fpackage.json&query=%24.version&label=version)
+ **[>> Check the Demo](https://gravity-dnd.vercel.app/?path=/docs/gravity-librarydemo--docs)** 
+
 Originally created back in 2019 for [Pollux.gg](https://pollux.gg)'s Medal Picker from the profile
  editor dashboard ([Original source](https://github.com/PolestarLabs/dashboard/blob/96cdfd6a8b49612c807a38230ab909aaf75ca944/src/views/dashboard/pages/profile_edit.pug)). Original was done in pure frontend Vue2
  and Pug using [vuedraggable](https://www.npmjs.com/package/vuedraggable). 
