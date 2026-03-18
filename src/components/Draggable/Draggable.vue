@@ -96,13 +96,13 @@ const dragging = computed(() => {
 });
 
 const hovering = computed(() => {
-  if (!dragDrop?.dragState.hoverTarget) return false;
-  return dragging.value;
+  if (!dragging.value) return false;
+  return !!dragDrop?.dragState.hoverTarget;
 });
 
 const canDropAtHover = computed(() => {
-  if (!dragDrop?.dragState.hoverTarget) return false;
-  return dragging.value && dragDrop.dragState.hoverTarget.accepts;
+  if (!dragging.value) return false;
+  return !!dragDrop?.dragState.hoverTarget?.accepts;
 });
 
 const dropMode = computed(() => props.dropMode);
