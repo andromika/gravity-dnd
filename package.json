@@ -1,8 +1,18 @@
 {
   "name": "gravity-dnd",
-  "private": true,
+  "private": false,
   "version": "0.6.3",
   "type": "module",
+  "authors": [
+    {
+      "name": "L Reis / Flicky / Andromika",
+      "email": "github@amarok.com"
+    },
+    {
+      "name": "Polestar Labs",
+      "email": "hello@pollux.gg"
+    }
+  ],
   "description": "A Vue 3 drag-and-drop component library.",
   "scripts": {
     "start": "npm run storybook",
