@@ -54,14 +54,6 @@
   color: #FF7B72 !important;
 }
 
-/* Apply dark styling to Storybook docs containers */
-.docblock-source,
-.docblock-source-preview,
-.docblock-source-wrapper
-{
-  background: #0b0f14 !important;
-  color: #c9d1d9 !important;
-}
 
 /* Apply dark styling to code blocks in Storybook docs */
 pre[class*="language-"],
