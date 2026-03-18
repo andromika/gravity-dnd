@@ -1,0 +1,55 @@
+.st-gravity-slot {
+  border: 1px dashed #9ca3af;
+  border-radius: 8px;
+  transform-origin: center;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease;
+}
+
+.st-gravity-slot--hovering {
+  transform: translateY(-1px);
+}
+
+.st-gravity-slot--accepting {
+  background: #ecfeff;
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 2px rgb(34 211 238 / 20%);
+  animation: gravity-slot-accepting 170ms ease-out;
+}
+
+.st-gravity-slot--rejecting {
+  background: #fef2f2;
+  border-color: #f87171;
+  box-shadow: 0 0 0 2px rgb(248 113 113 / 20%);
+  animation: gravity-slot-rejecting 190ms ease-out;
+}
+
+@keyframes gravity-slot-accepting {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  55% {
+    transform: translateY(-1px) scale(1.01);
+  }
+  100% {
+    transform: translateY(-1px) scale(1);
+  }
+}
+
+@keyframes gravity-slot-rejecting {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-2px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
