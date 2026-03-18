@@ -1,18 +1,14 @@
-import type { StorybookConfig } from '@storybook/vue3';
+import type { StorybookConfig } from '@storybook/vue3-vite';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-a11y'],
-  framework: {
-    name: '@storybook/vue3',
-    options: {}
-  },
-  core: {
-    builder: '@storybook/builder-vite'
-  },
+  staticDirs: ["../public"],
+  addons: [
+    "@storybook/addon-a11y"
+  ],
+  framework: "@storybook/vue3-vite",
   docs: {
     autodocs: 'tag'
   }
 };
-
 export default config;
