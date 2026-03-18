@@ -9,7 +9,7 @@ import {
   type GravityPoolReceiveEvent,
   type GravityPoolReorderEvent,
   type GravitySlotDropEvent,
-} from './index';
+} from '../index';
 
 interface DemoItem {
   id: string;
