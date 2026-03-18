@@ -1,7 +1,7 @@
 {
   "name": "gravity-dnd",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.6.3",
   "type": "module",
   "description": "A Vue 3 drag-and-drop component library.",
   "scripts": {
