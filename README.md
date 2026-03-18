@@ -276,4 +276,6 @@ function onReorder(event) {
 ## Notes
 - This drag/drop system is intentionally lightweight and does not have built-in keyboard accessibility.
 - For production use, wrap drag-drop logic in safe state updates (avoid mutating arrays directly in complex UIs).
-- The `onDropCollision` API is designed so you can build both simple and advanced behaviors in the same component.
+- The `onDropCollision` API is designed for specific use-cases from Pollux.gg's dashboard, its implementation might be a bit stiff.
+- Better mobile support is planned for future iterations
+- React support is being considered.
