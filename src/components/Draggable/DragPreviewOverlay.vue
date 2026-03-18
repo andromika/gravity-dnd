@@ -7,7 +7,6 @@ Teleport(to="body")
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import './DragPreviewOverlay.scss';
 
 const props = defineProps<{
   visible: boolean;

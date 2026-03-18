@@ -5,3 +5,305 @@
 body {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
+
+.st-profile-medalpicker2-dnd {
+  position: relative;
+  user-select: none;
+}
+
+.st-gravity-provider {
+  position: relative;
+  user-select: none;
+}
+
+.st-gravity-draggable {
+  display: inline-block;
+  cursor: grab;
+}
+
+.st-gravity-draggable__content {
+  display: block;
+  transform-origin: center;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease,
+    box-shadow 140ms ease,
+    filter 140ms ease;
+}
+
+.st-gravity-draggable--pressed {
+  cursor: grabbing;
+}
+
+.st-gravity-draggable--pressed .st-gravity-draggable__content {
+  transform: scale(0.98);
+}
+
+.st-gravity-draggable--dragging {
+  cursor: grabbing;
+}
+
+.st-gravity-draggable--dragging .st-gravity-draggable__content {
+  opacity: 0.35;
+}
+
+.st-gravity-draggable--hover-accept .st-gravity-draggable__content {
+  box-shadow: 0 0 0 2px rgb(34 197 94 / 35%);
+}
+
+.st-gravity-draggable--hover-reject .st-gravity-draggable__content {
+  box-shadow: 0 0 0 2px rgb(239 68 68 / 35%);
+  filter: saturate(0.85);
+}
+
+.st-gravity-draggable--feedback-accepted .st-gravity-draggable__content {
+  animation: gravity-draggable-accepted 180ms ease-out;
+}
+
+.st-gravity-draggable--feedback-rejected .st-gravity-draggable__content {
+  animation: gravity-draggable-rejected 190ms ease-out;
+}
+
+.st-gravity-draggable--feedback-returned .st-gravity-draggable__content {
+  animation: gravity-draggable-returned 210ms ease-out;
+}
+
+.st-gravity-draggable--disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.st-gravity-preview {
+  position: fixed;
+  z-index: 10000;
+  box-sizing: border-box;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45));
+  will-change: left, top;
+  overflow: hidden;
+  opacity: 1 !important;
+}
+
+.st-gravity-preview__inner {
+  opacity: 1 !important;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-align: center;
+  display: block;
+}
+
+.st-gravity-slot {
+  border: 1px dashed #9ca3af;
+  border-radius: 8px;
+  transform-origin: center;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease;
+}
+
+.st-gravity-slot--hovering {
+  transform: translateY(-1px);
+}
+
+.st-gravity-slot--accepting {
+  background: #ecfeff;
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 2px rgb(34 211 238 / 20%);
+  animation: gravity-slot-accepting 170ms ease-out;
+}
+
+.st-gravity-slot--rejecting {
+  background: #fef2f2;
+  border-color: #f87171;
+  box-shadow: 0 0 0 2px rgb(248 113 113 / 20%);
+  animation: gravity-slot-rejecting 190ms ease-out;
+}
+
+.st-gravity-pool {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  min-height: 76px;
+  padding: 8px;
+  transform-origin: center;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease;
+}
+
+.st-gravity-pool--hovering {
+  transform: translateY(-1px);
+}
+
+.st-gravity-pool--accepting {
+  background: #f0fdf4;
+  border-color: #86efac;
+  box-shadow: 0 0 0 2px rgb(134 239 172 / 22%);
+  animation: gravity-pool-accepting 170ms ease-out;
+}
+
+.st-gravity-pool--rejecting {
+  background: #fef2f2;
+  border-color: #f87171;
+  box-shadow: 0 0 0 2px rgb(248 113 113 / 22%);
+  animation: gravity-pool-rejecting 190ms ease-out;
+}
+
+.st-gravity-pool__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.st-gravity-pool__entry {
+  display: inline-flex;
+}
+
+.st-gravity-pool__drop-indicator {
+  position: relative;
+  display: inline-flex;
+  width: 56px;
+  min-height: 30px;
+  border-radius: 6px;
+  border: 1px solid #22c55e;
+  background: rgb(255 255 255 / 35%);
+  box-shadow: 0 0 0 2px rgb(34 197 94 / 35%);
+  pointer-events: none;
+  animation: gravity-pool-insert-indicator 130ms ease-out;
+}
+
+.st-gravity-pool__drop-indicator::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.gravity-pool-reorder-move {
+  transition: transform 180ms ease;
+}
+
+.gravity-pool-reorder-enter-active {
+  transition: opacity 170ms ease, transform 170ms ease;
+}
+
+.gravity-pool-reorder-leave-active {
+  position: absolute;
+  opacity: 0;
+}
+
+.gravity-pool-reorder-enter-from,
+.gravity-pool-reorder-leave-to {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+@keyframes gravity-draggable-accepted {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes gravity-draggable-rejected {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  60% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes gravity-draggable-returned {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  55% {
+    transform: translateY(-2px) scale(0.99);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes gravity-slot-accepting {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  55% {
+    transform: translateY(-1px) scale(1.01);
+  }
+  100% {
+    transform: translateY(-1px) scale(1);
+  }
+}
+
+@keyframes gravity-slot-rejecting {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-2px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes gravity-pool-accepting {
+  0% {
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(-1px) scale(1.005);
+  }
+  100% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes gravity-pool-rejecting {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-2px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes gravity-pool-insert-indicator {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.65);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}

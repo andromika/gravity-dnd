@@ -41,7 +41,6 @@ import type {
   DraggableCanDragContext,
   DraggableDropEvent,
 } from './contracts';
-import './Draggable.scss';
 
 const props = withDefaults(
   defineProps<{

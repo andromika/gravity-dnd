@@ -1,4 +1,4 @@
-import '../src/styles.css';
+import '../styles.css';
 import './preview.css';
 
 export const parameters = {

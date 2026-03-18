@@ -5,7 +5,6 @@
 
 <script setup lang="ts">
 import { provideDragDropContext } from './useDragDropContext';
-import './DragDropProvider.scss';
 
 const { dragState, cancelDrag } = provideDragDropContext();
 </script>

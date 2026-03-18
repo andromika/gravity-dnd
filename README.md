@@ -12,6 +12,12 @@ drag-and-drop system for Vue 3.
 It has been redesigned for use in component libraries and applications where you want
 customizable drop targets, drag sources, and flexible collision behavior.
 
+Component styles are opt-in. The Vue components do not import their own styles, so bring in the package stylesheet explicitly when you want the default presentation.
+
+```ts
+import 'gravity-dnd/styles.css';
+```
+
 *Renamed to **Gravity** to keep on-theme with all of other Pollux's side-libs and elements. Mainly its parent component lib: **Stardust UI***
 
 ---
@@ -30,6 +36,7 @@ It provides context for all draggables, slots, and pools.
 </template>
 
 <script setup>
+import 'gravity-dnd/styles.css';
 import { GravityProvider } from '@/ui/gravity';
 </script>
 ```
@@ -257,6 +264,7 @@ function handleSlotDrop(event: GravitySlotDropEvent<MyItem>) {
 </template>
 
 <script setup lang="ts">
+import 'gravity-dnd/styles.css';
 import { ref } from 'vue';
 import { GravityProvider, GravityPool, GravitySlot, GravityDraggable } from '@/ui/gravity';
 

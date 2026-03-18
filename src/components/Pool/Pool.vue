@@ -28,7 +28,6 @@ import { computed, onBeforeUnmount, ref, watch } from 'vue';
 import { TransitionGroup } from 'vue';
 import { useDragDropContext } from '../Draggable/useDragDropContext';
 import type { PoolReceiveEvent, PoolReorderEvent } from '../Draggable/contracts';
-import './Pool.scss';
 
 const props = withDefaults(
   defineProps<{
