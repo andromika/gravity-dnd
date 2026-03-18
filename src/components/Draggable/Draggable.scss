@@ -1,0 +1,95 @@
+.st-gravity-draggable {
+  display: inline-block;
+  cursor: grab;
+}
+
+.st-gravity-draggable__content {
+  display: block;
+  transform-origin: center;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease,
+    box-shadow 140ms ease,
+    filter 140ms ease;
+}
+
+.st-gravity-draggable--pressed {
+  cursor: grabbing;
+}
+
+.st-gravity-draggable--pressed .st-gravity-draggable__content {
+  transform: scale(0.98);
+}
+
+.st-gravity-draggable--dragging {
+  cursor: grabbing;
+}
+
+.st-gravity-draggable--dragging .st-gravity-draggable__content {
+  opacity: 0.35;
+}
+
+.st-gravity-draggable--hover-accept .st-gravity-draggable__content {
+  box-shadow: 0 0 0 2px rgb(34 197 94 / 35%);
+}
+
+.st-gravity-draggable--hover-reject .st-gravity-draggable__content {
+  box-shadow: 0 0 0 2px rgb(239 68 68 / 35%);
+  filter: saturate(0.85);
+}
+
+.st-gravity-draggable--feedback-accepted .st-gravity-draggable__content {
+  animation: gravity-draggable-accepted 180ms ease-out;
+}
+
+.st-gravity-draggable--feedback-rejected .st-gravity-draggable__content {
+  animation: gravity-draggable-rejected 190ms ease-out;
+}
+
+.st-gravity-draggable--feedback-returned .st-gravity-draggable__content {
+  animation: gravity-draggable-returned 210ms ease-out;
+}
+
+.st-gravity-draggable--disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@keyframes gravity-draggable-accepted {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes gravity-draggable-rejected {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  60% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes gravity-draggable-returned {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  55% {
+    transform: translateY(-2px) scale(0.99);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
