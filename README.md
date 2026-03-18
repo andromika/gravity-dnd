@@ -19,7 +19,7 @@ customizable drop targets, drag sources, and flexible collision behavior.
 Wrap any part of your app that uses drag/drop in a single `GravityProvider`.
 It provides context for all draggables, slots, and pools.
 
-```vue
+```html
 <template>
   <GravityProvider>
     <!-- drag/drop components here -->
@@ -44,7 +44,7 @@ Key props:
 
 Example:
 
-```vue
+```html
 <GravityDraggable
   draggable-id="draggable-1"
   :item="item"
@@ -53,7 +53,7 @@ Example:
   :source-index="index"
 >
   <template #default="{ dragging }">
-    <div :style="{ opacity: dragging ? 0.35 : 1 }">{{ item.label }}</div>
+    <div :style="{ opacity:  dragging ? .9 : 1 }">{{ item.label }}</div>
   </template>
 </GravityDraggable>
 ```
@@ -68,7 +68,7 @@ Key props:
 - `onDropCollision` (`'replace' | 'swap' | 'reject'`): how to handle collisions when slot already contains an item
 - `accepts` (function): optional predicate to allow/reject drops based on item + source
 
-```vue
+```html
 <GravitySlot
   slot-id="my-slot"
   :item="currentItem"
@@ -91,7 +91,7 @@ Key events:
 - `@reorder` when items inside the pool are reordered
 - `@receive` when an item is dropped into the pool from another source
 
-```vue
+```html
 <GravityPool pool-id="my-pool" :items="items" @reorder="onReorder" @receive="onReceive">
   <template #item="{ item, index }">
     <GravityDraggable
@@ -102,7 +102,7 @@ Key events:
       :source-index="index"
     >
       <template #default="{ dragging }">
-        <div :style="{ opacity: dragging ? 0.35 : 1 }">{{ item.label }}</div>
+        <div :style="{ opacity:  dragging ? .9 : 1 }">{{ item.label }}</div>
       </template>
     </GravityDraggable>
   </template>
@@ -160,7 +160,7 @@ interface GravitySlotDropEvent<TItem> {
 ### Custom Accept Logic
 Use `accepts` to fine-tune which items can be dropped into a slot.
 
-```vue
+```html
 <GravitySlot
   slot-id="custom-slot"
   :accepts="(item, { sourceContainerId }) => sourceContainerId === 'trusted-pool'"
@@ -174,7 +174,7 @@ Use the slot scope values to render feedback:
 - `hovering`: whether the pointer is hovering the slot
 - `accepting`: whether the current drag is accepted
 
-```vue
+```html
 <GravitySlot slot-id="styled-slot" @drop="onDrop">
   <template #default="{ hovering, accepting }">
     <div :class="{ 'hovering': hovering, 'accepting': accepting }">
@@ -224,7 +224,7 @@ function handleSlotDrop(event: GravitySlotDropEvent<MyItem>) {
 
 ## Quick Start (smallest sample)
 
-```vue
+```html
 <template>
   <GravityProvider>
     <GravitySlot slot-id="target" onDropCollision="swap" @drop="onDrop">

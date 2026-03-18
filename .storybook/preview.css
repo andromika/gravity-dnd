@@ -1,0 +1,88 @@
+/* Dark code block theme for Storybook docs */
+.docs pre,
+.docs code,
+.docblock-source {
+  --code-bg: #0d1117;
+  --code-fg: #c9d1d9;
+  --code-border: #30363d;
+  --code-comment: #8b949e;
+  --code-string: #a5d6ff;
+  --code-keyword: #ff7b72;
+  --code-function: #58a6ff;
+  --code-variable: #f2cc8f;
+}
+.docblock-source .token.string {
+  color: var(--code-string) !important;
+}
+.docblock-source .token.keyword {
+  color: var(--code-keyword) !important;
+}
+.docblock-source .token.function {
+  color: var(--code-function) !important;
+}
+.docblock-source .token.comment {
+  color: var(--code-comment) !important;
+}
+.docblock-source .token.variable {
+  color: var(--code-variable) !important;
+}
+.docblock-source .token.operator {
+  color: #A58 !important;
+}
+.docblock-source .token.punctuation {
+  color: #A58 !important;
+}
+.docblock-source .token.property {
+  color: #58A6FF !important;
+}
+.docblock-source .token.class-name {
+  color: #58A6FF !important;
+}
+.docblock-source .token.tag {
+  color: #7eeba2 !important;
+}
+.docblock-source .token.attr-name {
+  color: rgb(92, 191, 230) !important;
+}
+.docblock-source .token.attr-value {
+  color: rgb(176, 192, 199) !important;
+}
+.docblock-source .token.boolean {
+  color: #FF7B72 !important;
+}
+.docblock-source .token.number {
+  color: #FF7B72 !important;
+}
+
+/* Apply dark styling to Storybook docs containers */
+.docblock-source,
+.docblock-source-preview,
+.docblock-source-wrapper
+{
+  background: #0b0f14 !important;
+  color: #c9d1d9 !important;
+}
+
+/* Apply dark styling to code blocks in Storybook docs */
+pre[class*="language-"],
+code[class*="language-"],
+.docblock-source pre,
+.docblock-source code,
+.docs pre,
+.docs code {
+  background: var(--code-bg) !important;
+  color: var(--code-fg) !important;
+  border: 1px solid var(--code-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: 0.9rem;
+  overflow: auto;
+}
+
+/* Make inline code blocks stand out */
+code {
+  background: rgba(255, 255, 255, 0.08) !important;
+  padding: 0.2rem 0.35rem !important;
+  border-radius: 4px !important;
+}
