@@ -103,7 +103,7 @@ function registerTarget() {
 }
 
 watch(
-  () => [props.slotId, props.index, props.disabled, props.item, props.onDropCollision, props.accepts],
+  () => [props.slotId, props.index, props.disabled, props.onDropCollision, props.accepts],
   () => registerTarget(),
   { immediate: true }
 );
