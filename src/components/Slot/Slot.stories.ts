@@ -61,7 +61,7 @@ export const AcceptAll: Story = {
                       borderRadius: '8px',
                       border: '1px solid #d1d5db',
                       background: '#f9fafb',
-                      opacity: dragging ? 0.35 : 1
+                      opacity:  dragging ? .9 : 1
                     }"
                   >
                     {{ sourceItem.label }}
@@ -142,7 +142,7 @@ export const ExplicitDeny: Story = {
                       borderRadius: '8px',
                       border: '1px solid #d1d5db',
                       background: '#f9fafb',
-                      opacity: dragging ? 0.35 : 1
+                      opacity:  dragging ? .9 : 1
                     }"
                   >
                     {{ sourceItem.label }}
@@ -224,7 +224,7 @@ export const FilteredAccept: Story = {
                       borderRadius: '8px',
                       border: '1px solid #d1d5db',
                       background: '#f9fafb',
-                      opacity: dragging ? 0.35 : 1
+                      opacity:  dragging ? .9 : 1
                     }"
                   >
                     {{ bronze.label }}
@@ -256,7 +256,7 @@ export const FilteredAccept: Story = {
                       borderRadius: '8px',
                       border: '1px solid #d1d5db',
                       background: '#f9fafb',
-                      opacity: dragging ? 0.35 : 1
+                      opacity:  dragging ? .9 : 1
                     }"
                   >
                     {{ gold.label }}

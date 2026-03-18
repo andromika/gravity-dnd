@@ -128,7 +128,7 @@ export const Combined: Story = {
                               borderRadius: '6px',
                               border: '1px solid #d1d5db',
                               background: '#f9fafb',
-                              opacity: dragging ? 0.35 : 1
+                              opacity:  dragging ? .9 : 1
                             }"
                           >
                             {{ slots[idx - 1]?.label }}
@@ -167,7 +167,7 @@ export const Combined: Story = {
                           borderRadius: '6px',
                           border: '1px solid #d1d5db',
                           background: '#f9fafb',
-                          opacity: dragging ? 0.35 : 1
+                          opacity:  dragging ? .9 : 1
                         }"
                       >
                         {{ item.label }}

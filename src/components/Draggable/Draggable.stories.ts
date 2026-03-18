@@ -53,7 +53,7 @@ export const Basic: Story = {
                   borderRadius: '8px',
                   border: '1px solid #d1d5db',
                   background: '#f9fafb',
-                  opacity: dragging ? 0.35 : 1
+                  opacity:  dragging ? .9 : 1
                 }"
               >
                 {{ item.label }}
@@ -106,7 +106,7 @@ export const Boundary: Story = {
                     borderRadius: '8px',
                     border: '1px solid #d1d5db',
                     background: '#f9fafb',
-                    opacity: dragging ? 0.35 : 1
+                    opacity:  dragging ? .9 : 1
                   }"
                 >
                   {{ item.label }}
@@ -175,7 +175,7 @@ export const DropModes: Story = {
                       borderRadius: '8px',
                       border: '1px solid #d1d5db',
                       background: '#f9fafb',
-                      opacity: dragging ? 0.35 : 1
+                      opacity:  dragging ? .9 : 1
                     }"
                   >
                     {{ targetModeItem.label }}
@@ -199,7 +199,7 @@ export const DropModes: Story = {
                       borderRadius: '8px',
                       border: '1px solid #d1d5db',
                       background: '#f9fafb',
-                      opacity: dragging ? 0.35 : 1
+                      opacity:  dragging ? .9 : 1
                     }"
                   >
                     {{ floatingModeItem.label }}
