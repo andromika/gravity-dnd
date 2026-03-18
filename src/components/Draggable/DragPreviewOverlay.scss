@@ -1,9 +1,11 @@
 .st-gravity-preview {
   position: fixed;
+  left: 0;
+  top: 0;
   z-index: 10000;
   box-sizing: border-box;
   pointer-events: none;
-  will-change: left, top;
+  will-change: transform;
   overflow: hidden;
   opacity: 1 !important;
 }
