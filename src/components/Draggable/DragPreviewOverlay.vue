@@ -25,9 +25,10 @@ const cloneReady = computed(() => props.width > 0 && props.height > 0);
 const previewStyle = computed(() => {
   const w = props.width;
   const h = props.height;
+  const tx = props.x - props.shiftX;
+  const ty = props.y - props.shiftY;
   return {
-    left: `${props.x - props.shiftX}px`,
-    top: `${props.y - props.shiftY}px`,
+    transform: `translate3d(${tx}px, ${ty}px, 0)`,
     width: `${w}px`,
     height: `${h}px`,
     minWidth: `${w}px`,
