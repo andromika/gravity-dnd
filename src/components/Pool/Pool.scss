@@ -1,0 +1,118 @@
+.st-gravity-pool {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  min-height: 76px;
+  padding: 8px;
+  transform-origin: center;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease;
+}
+
+.st-gravity-pool--hovering {
+  transform: translateY(-1px);
+}
+
+.st-gravity-pool--accepting {
+  background: #f0fdf4;
+  border-color: #86efac;
+  box-shadow: 0 0 0 2px rgb(134 239 172 / 22%);
+  animation: gravity-pool-accepting 170ms ease-out;
+}
+
+.st-gravity-pool--rejecting {
+  background: #fef2f2;
+  border-color: #f87171;
+  box-shadow: 0 0 0 2px rgb(248 113 113 / 22%);
+  animation: gravity-pool-rejecting 190ms ease-out;
+}
+
+.st-gravity-pool__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.st-gravity-pool__entry {
+  display: inline-flex;
+}
+
+.st-gravity-pool__drop-indicator {
+  position: relative;
+  display: inline-flex;
+  width: 56px;
+  min-height: 30px;
+  border-radius: 6px;
+  border: 1px solid #22c55e;
+  background: rgb(255 255 255 / 35%);
+  box-shadow: 0 0 0 2px rgb(34 197 94 / 35%);
+  pointer-events: none;
+  animation: gravity-pool-insert-indicator 130ms ease-out;
+}
+
+.st-gravity-pool__drop-indicator::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.gravity-pool-reorder-move {
+  transition: transform 180ms ease;
+}
+
+.gravity-pool-reorder-enter-active {
+  transition: opacity 170ms ease, transform 170ms ease;
+}
+
+.gravity-pool-reorder-leave-active {
+  position: absolute;
+  opacity: 0;
+}
+
+.gravity-pool-reorder-enter-from,
+.gravity-pool-reorder-leave-to {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+@keyframes gravity-pool-accepting {
+  0% {
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(-1px) scale(1.005);
+  }
+  100% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes gravity-pool-rejecting {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-2px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes gravity-pool-insert-indicator {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.65);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
