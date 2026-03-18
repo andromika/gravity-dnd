@@ -12,7 +12,7 @@ drag-and-drop system for Vue 3.
 It has been redesigned for use in component libraries and applications where you want
 customizable drop targets, drag sources, and flexible collision behavior.
 
-Component styles are opt-in. The Vue components do not import their own styles, so bring in the package stylesheet explicitly when you want the default presentation.
+Component structural styles are bundled with the Vue components. Visual color and border treatments are opt-in and come from the package stylesheet.
 
 ```ts
 import 'gravity-dnd/styles.css';

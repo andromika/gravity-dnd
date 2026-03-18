@@ -1,5 +1,4 @@
 .st-gravity-slot {
-  border: 1px dashed #9ca3af;
   border-radius: 8px;
   transform-origin: center;
   transition:
@@ -14,16 +13,10 @@
 }
 
 .st-gravity-slot--accepting {
-  background: #ecfeff;
-  border-color: #22d3ee;
-  box-shadow: 0 0 0 2px rgb(34 211 238 / 20%);
   animation: gravity-slot-accepting 170ms ease-out;
 }
 
 .st-gravity-slot--rejecting {
-  background: #fef2f2;
-  border-color: #f87171;
-  box-shadow: 0 0 0 2px rgb(248 113 113 / 20%);
   animation: gravity-slot-rejecting 190ms ease-out;
 }
 

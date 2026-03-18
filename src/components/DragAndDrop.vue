@@ -17,6 +17,7 @@
 <script setup lang="ts">
 import DragPreviewOverlay from '../Draggable/DragPreviewOverlay.vue';
 import { provideDragDropContext } from '../Draggable/useDragDropContext';
+import './DragAndDrop.scss';
 
 const { dragState, cancelDrag } = provideDragDropContext();
 </script>

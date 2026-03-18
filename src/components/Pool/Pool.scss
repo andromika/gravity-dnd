@@ -1,5 +1,4 @@
 .st-gravity-pool {
-  border: 1px solid #d1d5db;
   border-radius: 8px;
   min-height: 76px;
   padding: 8px;
@@ -16,16 +15,10 @@
 }
 
 .st-gravity-pool--accepting {
-  background: #f0fdf4;
-  border-color: #86efac;
-  box-shadow: 0 0 0 2px rgb(134 239 172 / 22%);
   animation: gravity-pool-accepting 170ms ease-out;
 }
 
 .st-gravity-pool--rejecting {
-  background: #fef2f2;
-  border-color: #f87171;
-  box-shadow: 0 0 0 2px rgb(248 113 113 / 22%);
   animation: gravity-pool-rejecting 190ms ease-out;
 }
 
@@ -45,9 +38,6 @@
   width: 56px;
   min-height: 30px;
   border-radius: 6px;
-  border: 1px solid #22c55e;
-  background: rgb(255 255 255 / 35%);
-  box-shadow: 0 0 0 2px rgb(34 197 94 / 35%);
   pointer-events: none;
   animation: gravity-pool-insert-indicator 130ms ease-out;
 }
@@ -57,7 +47,6 @@
   position: absolute;
   inset: 0;
   border-radius: 999px;
-  background: transparent;
 }
 
 .gravity-pool-reorder-move {

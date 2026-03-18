@@ -10,6 +10,7 @@
 import { computed, onBeforeUnmount, ref, watch } from 'vue';
 import { useDragDropContext } from '../Draggable/useDragDropContext';
 import type { SlotDropEvent } from '../Draggable/contracts';
+import './Slot.scss';
 
 const props = withDefaults(
   defineProps<{

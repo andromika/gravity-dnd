@@ -1,0 +1,8 @@
+.st-gravity-draggable--hover-accept .st-gravity-draggable__content {
+  box-shadow: 0 0 0 2px rgb(34 197 94 / 35%);
+}
+
+.st-gravity-draggable--hover-reject .st-gravity-draggable__content {
+  box-shadow: 0 0 0 2px rgb(239 68 68 / 35%);
+  filter: saturate(0.85);
+}

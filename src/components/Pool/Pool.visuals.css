@@ -1,0 +1,25 @@
+.st-gravity-pool {
+  border: 1px solid #d1d5db;
+}
+
+.st-gravity-pool--accepting {
+  background: #f0fdf4;
+  border-color: #86efac;
+  box-shadow: 0 0 0 2px rgb(134 239 172 / 22%);
+}
+
+.st-gravity-pool--rejecting {
+  background: #fef2f2;
+  border-color: #f87171;
+  box-shadow: 0 0 0 2px rgb(248 113 113 / 22%);
+}
+
+.st-gravity-pool__drop-indicator {
+  border: 1px solid #22c55e;
+  background: rgb(255 255 255 / 35%);
+  box-shadow: 0 0 0 2px rgb(34 197 94 / 35%);
+}
+
+.st-gravity-pool__drop-indicator::before {
+  background: transparent;
+}
