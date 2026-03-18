@@ -1,7 +1,7 @@
 {
-  "name": "gravity",
+  "name": "gravity-dnd",
   "private": false,
-  "version": "0.6.3",
+  "version": "1.0.4",
   "type": "module",
   "authors": [
     {
