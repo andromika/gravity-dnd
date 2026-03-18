@@ -23,7 +23,6 @@
     "@storybook/addon-essentials": "^7.0.0",
     "@storybook/addon-a11y": "^7.0.0",
     "@storybook/builder-vite": "^7.0.0",
-    "@storybook/manager-vite": "^7.0.0",
     "@storybook/vue3": "^7.0.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/compiler-sfc": "^3.4.0",
