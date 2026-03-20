@@ -12,6 +12,20 @@ drag-and-drop system for Vue 3.
 It has been redesigned for use in component libraries and applications where you want
 customizable drop targets, drag sources, and flexible collision behavior.
 
+## Installation
+
+```bash
+npm install gravity-dnd
+```
+```ts
+import {
+  GravityProvider,
+  GravityDraggable,
+  GravityPool,
+  GravitySlot,
+} from 'gravity-dnd';
+```
+
 Component structural styles are bundled with the Vue components. Visual color and border treatments are opt-in and come from the package stylesheet.
 
 ```ts
@@ -266,7 +280,7 @@ function handleSlotDrop(event: GravitySlotDropEvent<MyItem>) {
 <script setup lang="ts">
 import 'gravity-dnd/styles.css';
 import { ref } from 'vue';
-import { GravityProvider, GravityPool, GravitySlot, GravityDraggable } from '@/ui/gravity';
+import { GravityProvider, GravityPool, GravitySlot, GravityDraggable } from 'gravity-dnd';
 
 const items = ref([{ id: 'a', label: 'A' }, { id: 'b', label: 'B' }]);
 
