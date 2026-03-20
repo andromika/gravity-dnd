@@ -44,6 +44,7 @@
     "@storybook/addon-docs": "^10.2.19",
     "@storybook/builder-vite": "^10.2.19",
     "@storybook/vue3-vite": "^10.2.19",
+    "@typescript-eslint/eslint-plugin": "^8.57.1",
     "@vitejs/plugin-vue": "^6.0.5",
     "@vue/compiler-sfc": "^3.4.0",
     "chromatic": "^15.3.0",
