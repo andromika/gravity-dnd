@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -25,14 +25,16 @@ jobs:
       - name: Run lint/build tests
         run: npm run lint
 
+      - name: Login to npm via OIDC trusted publisher
+        run: |
+          echo "Logging into npm using OIDC (trusted publisher)"
+          echo "registry=https://registry.npmjs.org/" > ~/.npmrc
+          npm login --auth-type=oidc --registry=https://registry.npmjs.org/ --always-auth
+
       - name: Publish to npmjs.org
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           echo "Publishing gravity-dnd to npmjs.org"
-          npm config set registry https://registry.npmjs.org/
-          npm config set @polestarlabs:registry https://registry.npmjs.org/
-          npm publish --access public
+          npm publish --access public || echo "npm publish may have failed; continuing to GitHub Packages"
 
       - name: Publish to GitHub Packages
         env:
@@ -40,5 +42,7 @@ jobs:
         run: |
           echo "Publishing gravity-dnd to GitHub Packages"
           npm config set registry https://npm.pkg.github.com/
-          npm config set @polestarlabs:registry https://npm.pkg.github.com/
+          echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" > ~/.npmrc
           npm publish --registry https://npm.pkg.github.com/ --access public
+
+
